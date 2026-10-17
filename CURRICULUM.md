@@ -2,7 +2,9 @@
 
 The full, illustrated version lives in the Claude doc "Path to Anthropic: 12-Week Curriculum." This file is the working copy the tutor commands read. If the two disagree, update this file.
 
-**Assumptions:** about 20 hours a week. Primary target: Startup Partnerships. Secondary: Research PM, Labs. Stretch: Applied AI Engineer, Beneficial Deployments. Apply at the week 4 gate, not week 12.
+**Assumptions:** about 20 hours a week. Primary target: Startup Partnerships. Secondary: Research PM, Labs. Also worth applying: Beneficial Deployments partnerships roles. Applied AI Engineer is dropped as a target. Apply at the week 4 gate, not week 12.
+
+**Context:** Anthropic's October 2026 report "How employment is changing at Anthropic" shows junior technical hiring falling sharply, go-to-market teams growing faster than technical ones, interviewers weighing AI tool use, judgment, autonomy, and customer and mission orientation more heavily, and "meta-work" (building skills, monitoring and reviewing agents) rising to 22% of sessions. The plan below is tuned to that.
 
 **Done means public and used.** A task counts only when it is public and at least one real person outside Marc has used or reviewed it.
 
@@ -59,6 +61,7 @@ The full, illustrated version lives in the Claude doc "Path to Anthropic: 12-Wee
 - **Week 6, MCP:** read the spec; build the server applying "Writing effective tools for agents"; test from Claude Code and the Claude app; installable in under 15 minutes
 - **Week 7, context engineering:** read the context engineering post; memory, summarization, subagents; package one workflow as a skill; essay on the context-layer thesis
 - **Week 8, evals:** 50–100 cases, code-graded where possible, model-graded where not; hand error analysis of 50 failures; compare two model tiers on quality versus cost; publish the write-up
+- **Across weeks 5–8, agent orchestration:** run 2–3 agents in parallel on separate parts of the flagship, each in its own git worktree; write standing instructions and skills so agents stall less; log agent hours versus your hours weekly and publish the trend in the week 8 write-up; review agent output on a schedule rather than watching it work
 
 **Gate:** a stranger installs it in under 15 minutes, three or more operators have used it, eval results are public.
 
@@ -68,6 +71,7 @@ The full, illustrated version lives in the Claude doc "Path to Anthropic: 12-Wee
 - Rewrite a bad MCP tool description; measure tool-selection accuracy before and after.
 - At step 20 of a long task, what stays in context and what gets summarized or dropped?
 - Measure a model grader's agreement with his own labels on 20 cases.
+- Which agent stalled waiting on him most this week, and what standing instruction or skill would have prevented it?
 
 ---
 
@@ -98,7 +102,7 @@ Each week: read, run `/explain-back` on the core claim, then publish a 500–800
 
 | Week | Reading | Essay prompt |
 | --- | --- | --- |
-| 1 | Core Views on AI Safety; Anthropic's PBC structure | Why a safety-focused lab is also the right partner for startups |
+| 1 | Core Views on AI Safety; Anthropic's PBC structure; How employment is changing at Anthropic | Why a safety-focused lab is also the right partner for startups |
 | 2 | Responsible Scaling Policy | What the RSP means for a startup building on Claude |
 | 3 | Claude's constitution | How a model's character should shape product design |
 | 4 | 3Blue1Brown neural network and transformer series | Explain a transformer to a CPG founder |
@@ -106,7 +110,7 @@ Each week: read, run `/explain-back` on the core claim, then publish a 500–800
 | 6 | Constitutional AI paper; RLHF basics | How models are trained to be helpful and harmless |
 | 7 | Scaling Monosemanticity; On the Biology of a Large Language Model | What interpretability could unlock for products |
 | 8 | Alignment faking; agentic misalignment | Guardrails a startup shipping agents should build in |
-| 9 | Anthropic Economic Index | Where AI is actually used, and what that means for founders |
+| 9 | Anthropic Economic Index; reread How employment is changing at Anthropic | What Anthropic's own employment data means for the startups you'd serve |
 | 10 | Current frontier model system card | What a system card tells a builder, and what it doesn't |
 | 11–12 | Recent Anthropic research and engineering posts | Capability scan: three things newly possible, a product for each |
 
@@ -117,7 +121,7 @@ Each week: read, run `/explain-back` on the core claim, then publish a 500–800
 | Week | Post |
 | --- | --- |
 | 1 | What I'm building over the next 12 weeks, and for whom |
-| 4 | Launch: the claims compliance reviewer, with cost and accuracy numbers |
+| 4 | Launch: the claims compliance reviewer, with cost and accuracy numbers; plus a write-up of the AI tutor system as meta-work |
 | 6 | Launch: the CPG operator MCP server |
 | 8 | What evals caught that I would have missed |
 | 10 | Recap: teaching founders to build with Claude |

@@ -10,6 +10,7 @@ Append an entry to `LEARNING_LOG.md` using this format, filling it from the sess
 - **Did:** what shipped or moved, with links or commit hashes
 - **Learned:** one concept, in one sentence, in Marc's words
 - **Numbers:** any measurement (tokens, cost, latency, accuracy)
+- **Agent hours / my hours:** rough estimates for today (e.g. 6 / 2)
 - **Stuck on:** anything unresolved
 - **Next:** the one next thing
 - **Tutor rating:** 1–5, "did the tutor make me think and get it right?"
