@@ -15,7 +15,9 @@ Two things can go wrong in this curriculum: I might not actually be learning, or
 
 ```bash
 uv sync                      # installs the anthropic SDK
-export ANTHROPIC_API_KEY=... # keep it in .env, never commit it
+export ANTHROPIC_API_KEY=... # on your Mac: keep it in .env, never commit it
+# In a cloud environment, name it EVALS_ANTHROPIC_API_KEY instead:
+# ANTHROPIC_API_KEY is reserved there for Claude Code's own sign-in.
 uv run python evals/tutor/run_tutor_evals.py --dry-run
 uv run python evals/learner/quiz.py --week 1 --dry-run
 ```

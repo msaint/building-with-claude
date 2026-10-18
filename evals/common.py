@@ -26,7 +26,13 @@ def load_jsonl(path: Path) -> list[dict]:
 def client():
     import anthropic  # imported lazily so --dry-run works without the SDK
 
-    return anthropic.Anthropic()  # reads ANTHROPIC_API_KEY
+    # In cloud sessions ANTHROPIC_API_KEY is reserved for Claude Code's own sign-in,
+    # so the evals use EVALS_ANTHROPIC_API_KEY when it is set, and fall back to
+    # ANTHROPIC_API_KEY (e.g. from .env on a laptop).
+    key = os.environ.get("EVALS_ANTHROPIC_API_KEY") or os.environ.get("ANTHROPIC_API_KEY")
+    if not key:
+        raise SystemExit("No API key: set EVALS_ANTHROPIC_API_KEY (cloud) or ANTHROPIC_API_KEY (.env).")
+    return anthropic.Anthropic(api_key=key)
 
 
 GRADE_TOOL = {
