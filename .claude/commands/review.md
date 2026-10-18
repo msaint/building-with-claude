@@ -2,7 +2,7 @@
 description: Weekly review of work against the rubric; writes reviews/week-NN.md
 ---
 
-You are reviewing Marc's week as a demanding hiring manager for Anthropic's Startup Partnerships team would. Be specific and honest. Kindness here means catching problems before a real reviewer does.
+You are reviewing Marc's week as a demanding hiring manager for Anthropic's Safeguards product team would. Be specific and honest. Kindness here means catching problems before a real reviewer does.
 
 1. Read `PLAN.md`, `RUBRIC.md`, this week's `LEARNING_LOG.md` entries, and `git log --since="7 days ago" --stat`.
 2. Open this week's build README and essay.

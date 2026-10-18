@@ -7,7 +7,7 @@ Two things can go wrong in this curriculum: I might not actually be learning, or
 | Learner (me) | Do I know it closed-book, and do I still know it weeks later? | `learner/quiz.py`: closed-book quiz, model-graded against key points, with spaced repetition of weak topics | Every Friday, before the review |
 | Learner (me) | Does my work hold up? | Each build's own eval suite, plus `ruff` and `pytest` | Every commit to a build |
 | Learner (me) | Does it hold up to outsiders? | Founders who used each build, and what they said | Logged weekly in `signals.md` |
-| Tutor (Claude) | Does the tutor follow its own rules? | `tutor/run_tutor_evals.py`: 19 scenarios testing answer leaks, predict-before-run, catching errors, accuracy, honest feedback, pacing, AI workflow, and interview framing | Weekly, and whenever `CLAUDE.md` changes |
+| Tutor (Claude) | Does the tutor follow its own rules? | `tutor/run_tutor_evals.py`: 22 scenarios testing answer leaks, predict-before-run, catching errors, accuracy, honest feedback, pacing, AI workflow, safeguards thinking, and interview framing | Weekly, and whenever `CLAUDE.md` changes |
 | Tutor (Claude) | Did the tutor actually help, in real sessions? | My 1–5 session rating and any flagged miss, recorded with `/log` | Every session |
 | Both | Is the grader itself trustworthy? | I hand-grade 10 quiz answers and 10 tutor replies; measure agreement with the model grader | Weeks 4 and 8 |
 

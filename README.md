@@ -24,9 +24,9 @@ Live progress: https://claude.ai/artifact/EYMT3aQDYaopkYHMyDDzoK
 | Week | Build | Status |
 | --- | --- | --- |
 | 1 | CLI tool | Not started |
-| 2–4 | Claims compliance reviewer for supplement and food brands | Not started |
-| 5–8 | CPG operator agent and MCP server | Not started |
-| 9–12 | Founder program pilot and field report | Not started |
+| 2–4 | Claims safeguard for supplement and food brands: policy, detection, interventions, metrics | Not started |
+| 5–8 | CPG operator agent and MCP server, red-teamed against prompt injection | Not started |
+| 9–12 | Safeguards product spec, plus a founder workshop | Not started |
 
 ## How this repo works
 
