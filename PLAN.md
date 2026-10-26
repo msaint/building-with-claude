@@ -1,39 +1,40 @@
-# Week 1: Retool
+# Week 2: Build a safeguard (tool use and structured outputs)
 
-**Dates:** Mon 19 Oct to Fri 23 Oct 2026 · about 20 hours
+**Dates:** Mon 26 Oct to Fri 30 Oct 2026 · about 20 hours
 
-**Deliverable (ships Friday):** `listing-audit`, a Python CLI that audits an Amazon listing (title, bullets, description) against a written rule set and returns structured findings. Public repo under `builds/listing-audit/`, with a `--model` flag and a small benchmark (20 real listings, run on all three tiers). README as a short case study: problem, design, numbers, what failed, what's next. Keep claims compliance out of scope; that is weeks 2 to 4.
+**Deliverable (ships Friday):** `claims-guard` v1 in `builds/claims-guard/`. It has a one-page policy spec (`POLICY.md`) written like a usage policy, three harm categories with severity, and an intervention ladder (allow, warn, suggest rewrite, block). It also has a Python CLI that takes the text of a product page, calls a "check a claim" tool, and returns findings validated with Pydantic, one intervention per claim. Run it end to end on 15 hand-labeled real claims and put the results table in the README.
 
-**Gate:** explain the cost, latency and quality tradeoffs between model tiers for a chosen task, with measured numbers, without notes.
+**Gate (phase gate, checked at week 4):** repo public, two or more operators outside his companies have run it, README reports precision and recall by category and explains the threshold chosen. **This week's bar:** v1 runs end to end on the 15 labeled claims, every output passes validation, and failures are counted and reported, never dropped.
 
-**Carry-over:** none. This is the first week, so there is no prior review or quiz result to fix.
+**Carry-over (week 1 review: gate missed, nothing pushed):** ship the cut-down `listing-audit` **Monday, before any week 2 work**: 10 listings, 3 tiers, one table (tokens, cost, p50 latency, agreement with your labels), README with what failed. Push it rough. Then commit and `/log` at the end of every session this week, with hours, agent hours and a tutor rating.
+
+**Cut because you're behind (no extra hours):** vision and PDF input moves to week 3. The policy covers 3 harm categories, not every one: disease claims, unsubstantiated structure/function claims, misleading testimonials. 15 labeled claims instead of 50 (week 4 grows it). Week 1's essay replaces week 2's: the ASL-3 essay moves to week 3, and the RSP reading shrinks to a skim. The week 1 milestone post becomes one paragraph in the essay.
 
 ## Daily plan
 
 | Day | Hours | Work |
 | --- | --- | --- |
-| Mon | 4 | **First:** line up one Amazon seller (Jade Leaf alumni or a portfolio founder) to run the tool Thursday. Then: Console key with a spend limit; `uv init`, `ruff`, `pytest` in `builds/listing-audit/`; first Messages API call with a system prompt. Predict tokens before each call. |
-| Tue | 4 | Multi-turn, streaming, stop reasons. Pydantic models for findings. Write the 10-rule spec yourself before prompting. Read "Building safeguards for Claude". |
-| Wed | 4 | Collect 20 listings, hand-label the expected findings. Run all three tiers: tokens, cost, p50 latency, agreement with your labels. Scope check: if the benchmark isn't running by tonight, cut to 10 listings. |
-| Thu | 4 | Seller runs the tool; log what they said in `evals/signals.md`. Fix the top issue. README with the numbers table. Read the Usage Policy and the employment report. |
-| Fri | 4 | Essay and milestone post. Closed-book quiz, `/eval`, weekly review. Log agent hours versus your hours. |
+| Mon | 4 | **First:** message one supplement or food operator (Jade Leaf alum or portfolio founder) and book a 30-minute Thursday slot. Then ship `listing-audit` (carry-over above), push, `/log`. |
+| Tue | 4 | Write `POLICY.md` yourself before prompting: allowed vs risky, why, two examples each side per category, severity, intervention for each. Collect and hand-label 15 real claims, including 3 borderline ones. Write down the cost of a false positive and of a miss. |
+| Wed | 4 | Tool use: design the check-a-claim tool two ways, `tool_choice`, tool errors, Pydantic validation, retry on failure. v1 end to end. **Scope check:** if v1 isn't running by tonight, drop the rewrite suggestion and ship allow/warn/block only. |
+| Thu | 4 | Operator runs it on their own product page; log it in `evals/signals.md`. Fix the top issue. README: problem, policy, design, results table, what failed. |
+| Fri | 4 | Essay. Closed-book quiz, `/eval`, push `evals/results/`. Log agent hours vs your hours. |
 
-**Workflow rule:** no code by hand that Claude Code could write. Use one subagent to collect and clean listings while you write the rule spec, and add a `/bench` slash command so the tier run is one line.
+**Workflow rule:** run two agents in parallel on Tuesday: one collects and cleans real claims from public product pages while you write the policy, and one scaffolds the Pydantic models and tests. Review their output at a set time; don't watch them work.
 
 ## Tutor checks
 
-- Predict tokens and cost for a 2,000-word prompt with a 500-word reply on each tier; measure; explain the gap.
-- Explain step by step what happens between the API call and the first streamed token reaching the terminal.
-- When does the small model win, and when does choosing it backfire? Answer with your benchmark numbers.
-- Before accepting any function Claude Code writes, explain every line.
-- **Judgment (baseline; no review yet):** name one feature you decided not to build this week, and the cost of a wrong audit finding to a seller, in dollars or hours.
+- Design the "check a claim" tool schema two ways; predict which the model calls more reliably; test both on the 15 claims and report the numbers.
+- What does your code do when the tool input fails validation, or the model returns no tool call? Show the test.
+- Before any prompt change, sort every wrong finding from the 15 into categories.
+- A false positive costs a brand legitimate sales; a miss risks an FTC warning letter. Put a rough dollar figure on each for one real brand, and say which way that pushes the threshold.
+- **Founder empathy (weakest-scored dimension, tied at 1):** before Thursday's session, write the three questions you'll ask the operator and the one answer that would make you change the design. Afterwards, record whether it changed.
 
 ## Reading and essay
 
-- **Read:** Building safeguards for Claude; Anthropic's Usage Policy; How employment is changing at Anthropic. Run `/explain-back` on each core claim.
-- **Essay (500 to 800 words):** How a policy becomes detection: lessons from FTC claims rules and payment fraud.
-- **Milestone post:** What I'm building over the next 12 weeks, and for whom.
+- **Read:** Responsible Scaling Policy (skim the ASL definitions only). Re-read "Building safeguards for Claude" next to your `POLICY.md`. Run `/explain-back` on how Anthropic moves from policy to detection.
+- **Essay (500 to 800 words, carried from week 1):** How a policy becomes detection: lessons from FTC claims rules and payment fraud. Use `POLICY.md` as the worked example. End with one paragraph on what you're building over the 12 weeks, and for whom.
 
 ## Founder touchpoint
 
-Nobody is lined up yet. Monday's first task is to book one Amazon seller for a 30-minute Thursday session where they run `listing-audit` on their own listing and tell you what is wrong with it.
+Nobody is lined up (`evals/signals.md` is empty). Monday's first task is to book one supplement or food operator outside your companies for a 30-minute Thursday session. They run `claims-guard` on their own product page, and you log what they said. This is the first of the two outside operators the week 4 gate needs.
