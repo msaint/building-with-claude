@@ -15,3 +15,4 @@ Score 1 to 5 on each dimension, from public work only. Reviews at the end of eve
 | Week | Technical | Judgment | Founder empathy | Communication | Mission | Gate | Reviewer |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | 1 | 1 | 1 | 1 | 1 | Missed | Scheduled Friday review |
+| 2 | 1 | 1 | 1 | 1 | 1 | Missed | Scheduled Friday review |
