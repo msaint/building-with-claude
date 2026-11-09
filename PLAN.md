@@ -1,43 +1,42 @@
-# Week 3: Build a safeguard (production)
+# Week 4: Build a safeguard (rigor and metrics, phase gate)
 
-**Dates:** Mon 2 Nov to Fri 6 Nov 2026 · about 20 hours
+**Dates:** Mon 9 Nov to Fri 13 Nov 2026 · about 20 hours
 
-**Deliverable (ships Friday):** `claims-guard` in `builds/claims-guard/`, running on the 15 labeled claims with production basics measured: prompt caching before and after (tokens, cost, p50 latency), retries on rate-limit and overload errors, a cost per 1,000 reviews, and a one-paragraph retrieval versus long context decision with a cost number. README results table includes all of it, plus one outside operator's run.
+**Deliverable (ships Friday):** `claims-guard` in `builds/claims-guard/`, public: your `POLICY.md` (3 categories), `claims.csv` with 30 hand-labeled real claims (10 per category, 2 borderline in each), a CLI that returns one validated allow/warn/block finding per claim, and a README case study with precision and recall by category (counts shown), the threshold you chose and why, cost per 1,000 reviews, and at least one outside operator's run.
 
-**Gate (phase gate, checked at week 4):** repo public, two or more operators outside his companies have run it, README reports precision and recall by category and explains the threshold chosen. **This week's bar:** v0 pushed by Tuesday night; by Friday, caching is measured with real numbers, cost per 1,000 reviews is in the README, and one outside operator has run it and is logged in `evals/signals.md`.
+**Gate (phase gate, from the curriculum, then apply):** repo public, two or more operators outside his companies have run it, README reports precision and recall by category and explains the threshold chosen. **Apply only on a passed gate.** If Friday's check is "partly", the application moves to a week 5 re-check; it does not go out on a missed gate.
 
-**Carry-over (week 2 review: gate missed, second week, nothing pushed):**
-1. `listing-audit` is dropped for good. Its tier comparison returns as one table in `claims-guard` (15 claims, two tiers).
-2. **Ship `claims-guard` v0 by Tuesday night:** your own one-page `POLICY.md` (3 categories), `claims.csv` with 15 hand-labeled real claims including 3 borderline, and a CLI that prints one validated finding per claim with failures counted. Push it rough. Caching and cost come only after v0 is pushed.
-3. **Commit every working day**, even one file, and `/log` with hours, agent hours and a tutor rating.
-4. **Operator message is Monday's first task**, logged in `evals/signals.md` as "asked".
-5. Take the closed-book quiz Friday and push `evals/results/`.
+**Carry-over (third week running):** no week 3 review was committed, and `git log` shows no commits in week 3 after Monday's plan: `builds/`, `essays/`, `evals/results/`, `evals/signals.md` and `LEARNING_LOG.md` are unchanged since week 0. The week 2 review's fixes all still stand:
+1. **Ship `claims-guard` v0 by Tuesday night.** `POLICY.md` first, written by you, committed Monday. Push rough.
+2. **Commit every working day** and `/log` with hours, agent hours and a tutor rating. A fourth silent week is the single worst signal the repo can send.
+3. **Operator messages are Monday's first task**, two this time (the gate needs two), each logged in `evals/signals.md` as "asked".
+4. Take the first closed-book quiz Friday and push `evals/results/`.
 
-**Cut because you're behind (no extra hours):** interventions are allow/warn/block only; rewrite suggestions move to week 4 or later. Batch processing becomes a written estimate, not a build. Vision and PDF input is dropped from this phase. Retrieval versus long context is a decision paragraph with a cost number, not two implementations. One essay only (the carried week 1 essay); the ASL-3 and constitution essays are cut, readings kept as a skim.
+**Cut because you're behind (no extra hours):** 30 labels, not 50+. Prompt caching layouts, batch, and retrieval versus long context are dropped from this phase (cost per 1,000 reviews stays: one number from the usage fields). Retries shrink to one test: a claim that errors is reported as `error`, never `allow`. Held-out claim type, the tutor-system write-up and the grader audit move to week 5. No essay; the README is this week's writing, and the launch post is the README link plus three lines.
 
 ## Daily plan
 
 | Day | Hours | Work |
 | --- | --- | --- |
-| Mon | 4 | **First:** message one supplement or food operator outside your companies; book 30 minutes Thursday; log "asked". Write `POLICY.md` yourself, no prompting. Commit it today. `/log`. |
-| Tue | 4 | Hand-label 15 real claims (3 borderline). v0 CLI end to end with Pydantic validation and failure counts. **Push by tonight.** Two agents in parallel: one collects claims while you write labels, one scaffolds models and tests. |
-| Wed | 4 | Prompt caching: predict, then measure three prompt layouts (cache hits, tokens, cost, latency). Retries with backoff. **Scope check:** if v0 wasn't pushed Tuesday, drop caching layouts to one and say so in the log. |
-| Thu | 4 | Operator runs it on their own product page; log it. Cost per 1,000 reviews (cached vs uncached, two tiers). Retrieval vs long context paragraph. README results table. |
-| Fri | 4 | Essay. Closed-book quiz, `/eval`, push `evals/results/`. Log agent hours vs your hours. |
+| Mon | 4 | **First 30 min:** message two supplement or food operators outside your companies; book Thursday; log both as "asked". Write `POLICY.md` yourself (definition, why it's risky, 2 examples each side, severity, intervention per category). **Commit tonight.** `/log`. Set up the Wednesday `/checkin` two reviews have suggested. |
+| Tue | 4 | Label 30 real claims. v0 CLI end to end: Pydantic-validated findings, failure counts, the error-is-never-allow test. **Push tonight.** Two agents in parallel: one gathers candidate claims while you label, one scaffolds models and tests. |
+| Wed | 4 | Run all 30. Precision and recall per category with the confusion counts. Sort every miss into a failure type *before* changing the prompt; one prompt revision, re-run, report both. **Scope check by noon:** if v0 isn't pushed, cut to 15 claims and say so in the log. |
+| Thu | 4 | Operator session(s); log what they did and said. Cost per 1,000 reviews from measured tokens. Dollar cost of a false positive and a miss for one real brand, then the threshold. README case study. |
+| Fri | 4 | Closed-book quiz, `/eval`, push `evals/results/`. Final README pass. `/log` agent hours vs your hours. Self-check the gate in one line. |
 
 ## Tutor checks
 
-- Predict which of three prompt layouts gets cache hits; test; explain what breaks caching.
-- Defend retrieval versus long context with a cost number per 1,000 reviews.
-- What does your code do on a 429 or 529, and after the last retry fails? Show the test. A dropped claim must never read as "allowed".
-- A false positive costs a brand legitimate sales; a miss risks an FTC warning letter. Put a rough dollar figure on each for one real brand (Jade Leaf is fine) and say which way it pushes the threshold. Carried from week 2.
-- **Judgment (tied lowest at 1; founder empathy had last week's check):** before Wednesday, write three lines in the log: what you are not building this week, why, and what evidence would make you add it back. Friday, check whether any of it came back without that evidence.
+- Sort 10 eval failures into categories before changing any prompt. Which category would a prompt change not fix?
+- A false positive costs a brand legitimate sales; a miss risks an FTC warning letter. Put a dollar figure on each for one real brand (Jade Leaf is fine). Where does the threshold go? Explain it to a policy lead in two sentences. Carried from week 2.
+- With 10 claims per category, what is one miss worth in recall? What would you say in the README so a reader doesn't over-trust the numbers?
+- Write 5 adversarial claims a seller would use to slip past your policy. How many get through? Fix one, and note the rest as known gaps.
+- **Communication (all five dimensions tied at 1; judgment and founder empathy had the last two checks):** give the README's first paragraph to someone outside. Ask them to say back what the tool does and how often it catches disease claims. If they can't, rewrite it before Friday.
+- No quiz review question this week: `evals/results/learner.csv` doesn't exist yet.
 
-## Reading and essay
+## Reading
 
-- **Read:** prompt caching docs; rate limits and errors docs. Skim the ASL-3 deployment safeguards report and Claude's constitution. Run `/explain-back` on what breaks a cache.
-- **Essay (500 to 800 words, carried from week 1):** How a policy becomes detection: lessons from FTC claims rules and payment fraud. Use `POLICY.md` as the worked example; end with one paragraph on what you're building over 12 weeks, and for whom.
+Optional, only after Thursday's README is pushed: the first two 3Blue1Brown neural network videos. The week 4 essay (explain a transformer to a CPG founder) is cut.
 
 ## Founder touchpoint
 
-Still nobody lined up (`evals/signals.md` is empty for two weeks). Monday's first task: book one supplement or food operator outside your companies for Thursday. Week 4 needs two, so ask a second person the same day. Optional: set up a short Wednesday `/checkin` that reads `git log` and pings you if `builds/` hasn't changed.
+Nobody lined up for three weeks; `evals/signals.md` is still empty. Monday's first task: two operators outside your companies, asked by message, booked for Thursday. A Jade Leaf alum and one portfolio founder are the fastest yeses. If only one runs it, the gate is "partly" and the second becomes week 5's first task.
