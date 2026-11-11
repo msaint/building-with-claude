@@ -1,130 +1,127 @@
 # Curriculum: 12 weeks building with Claude
 
-The full, illustrated version lives in the Claude doc "Path to Anthropic: 12-Week Curriculum." This file is the working copy the tutor commands read. If the two disagree, update this file.
+This file is the working copy the tutor commands read. The Claude doc "Path to Anthropic: 12-Week Curriculum" predates the 10 Nov 2026 retarget and is out of date; where the two disagree, this file wins.
 
-**Assumptions:** about 20 hours a week. Primary target: Product Manager, Safeguards (Generalist). Secondary: Startup Partnerships, which shares most of the preparation. Also worth applying: Research PM, Labs, and Beneficial Deployments partnerships roles, if open. Applied AI Engineer is dropped as a target. Apply at the week 4 gate, not week 12.
+**Target:** Research Product Manager, Labs at Anthropic. The posting asks for someone who works with researchers to see what is emerging, builds prototypes themselves, validates product-market fit at the lowest cost, and leads 0-to-1 work from research to shipped product. Every week below produces evidence for one of those.
 
-**Context:** Anthropic's October 2026 report "How employment is changing at Anthropic" shows junior technical hiring falling sharply, go-to-market teams growing faster than technical ones, interviewers weighing AI tool use, judgment, autonomy, and customer and mission orientation more heavily, and "meta-work" (building skills, monitoring and reviewing agents) rising to 22% of sessions. The plan below is tuned to that.
+**What changed on 10 Nov 2026 (retarget, week 4):**
+- Weeks 1 to 3 were aimed at Product Manager, Safeguards and built around a claims safeguard. Nothing shipped in those weeks. They stay in the record as they happened.
+- In the same period Marc built Ada, an adaptive learning platform, in its own repo. The plan now follows the work he is actually doing: **Ada is the spine.**
+- Hours drop from about 20 a week to **about 12**, sized to be finished.
+- **The application goes out by Fri 20 Nov (week 5), on a date, not a gate.** The posting has closed and reopened before. The weeks after that deepen the evidence for interviews.
+- The calendar is unchanged: 12 weeks, 19 Oct 2026 to 10 Jan 2027. The Labs plan runs weeks 4 to 12.
 
-**Edge:** Marc fought fraud at Tilt and Raisy, and turned FDA and FTC claims rules into product decisions at Jade Leaf. Policy, then detection, then intervention, then enforcement is work he has done. The plan makes it visible in an AI setting, and the fraud work is his lead interview story.
+**Edge:** Marc has taken products from zero to commercial success with tiny teams (Jade Leaf: the #1 US matcha brand, built by five people), built developer platforms (Tilt Open, Tilt's API), and incubates ventures against pre-set scale-or-stop milestones (3 scaling, 2 wound down). Writing kill criteria before building is work he has done. The plan makes it visible on AI products.
 
 **Done means public and used.** A task counts only when it is public and at least one real person outside Marc has used or reviewed it.
 
+**The Labs loop** (used every week from week 6, and the habit the whole plan trains):
+1. **Capability:** name the model or platform capability that is new, and the source (paper, release note, system card).
+2. **Bet:** one page, written before building: who it is for, what they do today, why this is possible now, the cheapest test, and the result that would make you stop.
+3. **Prototype:** built by Marc with coding agents, capped at 8 hours.
+4. **Users:** five people outside his companies, watched, not helped.
+5. **Decision:** kill, keep or change, against the criteria written in step 2. Published.
+
 ---
 
-## Week 1: Retool
+## Weeks 1–3: history (Safeguards target)
 
-**Goal:** build and ship a small Claude-powered Python tool without looking anything up twice.
+Retool, then a claims safeguard for supplement brands. Gates missed in weeks 1 and 2; no review was written for week 3. See `reviews/` and the score history in `RUBRIC.md`. Nothing from these weeks carries forward as a deliverable.
 
-- Python from Ruby: `uv`, `ruff`, `pytest`; comprehensions, dataclasses and Pydantic, type hints, context managers; `asyncio` basics
-- Claude API: Console key and spend limit; Messages API (system prompts, multi-turn, streaming, stop reasons); model tiers and their cost and latency; token counting and cost estimates
-- Claude Code: CLAUDE.md, slash commands, skills, subagents, hooks. Rule: no code by hand that Claude Code could write.
+---
 
-**Deliverable:** a CLI tool solving a real problem in one of Marc's businesses (e.g. an Amazon listing auditor), public repo with README.
+## Weeks 4–5: Ship what exists, then apply
 
-**Gate:** explain the cost, latency and quality tradeoffs between model tiers for a chosen task, with measured numbers, without notes.
+**Goal:** turn Ada from a private build into public evidence, and get the application in.
+
+Ada already has a working learning loop, a mastery model, spaced reviews, guest mode and a real-model eval (50 hand-labelled grading cases, 20 generation topics, OpenAI baseline). What it lacks is outside users, a Claude baseline, and a write-up a reviewer can read in two minutes.
+
+- **Week 4, evidence:** run the model eval on Claude and commit the baseline beside the OpenAI one; get three people outside Marc's companies through a first lesson on the live site and log what happened; write `builds/ada/README.md` here as a case study (the bet, the numbers, what failed, what is next) linking to the Ada repo; start `essays/friction-log.md`, a running list of every place learning breaks, in Ada and in the Claude app's own learning mode
+- **Week 5, apply:** publish essay 1 from the friction log; bring the resume and site in line with what Ada actually is; submit the application by Fri 20 Nov; fix the top two problems the week 4 sessions exposed
+
+**Gate (week 4):** a stranger finishes lesson one on the live site with no account and no help; the OpenAI and Claude eval baselines are both public; three outside sessions are logged in `evals/signals.md`.
+
+**Milestone (week 5):** application submitted by Fri 20 Nov, whatever the week 4 gate result. A missed gate is reported in the review; it does not hold the application.
 
 **Tutor checks**
-- Predict tokens and cost for a 2,000-word prompt with a 500-word reply on each tier; measure; explain the gap.
-- Explain step by step what happens between the API call and the first streamed token reaching the terminal.
-- When does the small model win, and when does choosing it backfire?
-- Before accepting any function Claude Code writes, explain every line.
+- In Ada's eval report, which single number matters most for a learning product, and why? What does its confidence interval tell a reader with this many cases?
+- The judge model also writes Ada's course plans by default. What does that do to trust in the plan scores, and what is the cheapest fix?
+- Before the user sessions: write the three places you expect people to stumble and the one observation that would make you change the product. Afterwards: did it?
+- Predict which provider does better on recognising partial answers. Then run it and explain the gap.
+- Who is Ada not for? One sentence, and what you would tell that person to use instead.
 
 ---
 
-## Weeks 2–4: Build a safeguard
+## Weeks 6–8: Three capability bets
 
-**Goal:** one polished public repo that works like a small Safeguards system: a written policy, detection, interventions and metrics, used by real operators. This is what he applies with.
+**Goal:** show the Labs loop three times in three weeks: capability, bet, prototype, users, decision.
 
-**Build:** a claims safeguard for supplement and food brands. Reads a product page or label, flags risky claims under DSHEA and FTC rules, and chooses an intervention. It mirrors the Safeguards job at small scale: policy, detection, intervention, metrics.
+One bet a week. Each ends Friday with a public kill-or-keep memo of one page. At least one bet must be outside learning, to show range. Bets can come from Marc's own backlog.
 
-**Design it before building it:**
-- Policy spec: one page on what's allowed and what's risky, and why, with examples on both sides, written like a usage policy
-- Harm categories with severity: disease claims, unsubstantiated structure and function claims, misleading testimonials, and so on
-- Intervention ladder: allow, warn, suggest a rewrite, or block, and who sees each
+- **Week 6, Ada where the learner already is:** does a course need its own app, or can it live inside Claude as a skill plus an MCP server? Build the smallest version, give five people both, and compare day-2 return. Readings: MCP introduction, "Writing effective tools for agents". (US Thanksgiving week: plan for 8 hours.)
+- **Week 7, an agent that runs part of a real business:** a bet from Marc's operator stack. Anthropic's Project Vend put Claude in charge of a small shop; Marc has run one. Pick one job an agent does badly today, write the bet, prototype it against his own data with human approval on anything that writes.
+- **Week 8, the newest capability:** pick the most recent model or platform capability released (the Monday coach names three candidates from the last 60 days of Anthropic releases and research). Write the bet in a day, prototype in two.
 
-- **Week 2, tool use and structured outputs:** tools, tool choice, parallel calls, tool errors; JSON schema outputs validated with Pydantic; vision and PDF input; v1 end to end
-- **Week 3, production:** prompt caching (measure before and after); batch processing; rate limits, retries, cost per 1,000 reviews; retrieval versus long context, decided and justified in writing
-- **Week 4, rigor and metrics:** apply the prompt engineering guide; hand-label 50+ real claims across every category, including borderline cases; report precision and recall by category; set thresholds using an explicit cost for each kind of error; measure blind spots with a held-out claim type the policy doesn't name; README as a case study (policy, design, metrics, tradeoffs, what failed)
-
-**Gate (then apply):** repo public, two or more operators outside his companies have run it, README reports precision and recall by category and explains the threshold chosen.
+**Gate (week 8):** three kill-or-keep memos public, each with criteria written before the build and five outside users; at least one decision went against what Marc expected on Monday; agent hours and his hours logged for all three weeks.
 
 **Tutor checks**
-- Design the "check a claim" tool schema two ways; predict which the model calls more reliably; test both.
-- Predict which of three prompt layouts gets cache hits; test; explain what breaks caching.
-- Defend retrieval versus long context with a cost number.
-- Write 10 adversarial claims designed to slip past the safeguard; fix what they expose.
-- Sort 10 eval failures into categories before changing any prompt.
-- A false positive costs a brand legitimate sales; a miss risks an FTC warning letter. Where does the threshold go, and how would he explain it to a policy lead in two sentences?
+- Read back your kill criteria before you open the editor. Is each one a number or an observable behaviour? Rewrite any that is a feeling.
+- For this week's capability: what could it not do six months ago, and how do you know?
+- Workflow or agent? Argue it for this bet, with the cost of being wrong.
+- Rewrite one bad MCP tool description; measure tool-selection accuracy before and after.
+- Which agent stalled waiting on you most this week, and what standing instruction or skill would have prevented it?
+- What is the worst thing this prototype could do to a user who trusts it, and what did you do about it?
 
 ---
 
-## Weeks 5–8: Flagship (agents, MCP, context, evals)
+## Weeks 9–11: Flagship
 
-**Goal:** prove command of agent design, tool design, context management and evaluation.
+**Goal:** take the bet that survived (Ada, unless weeks 6 to 8 say otherwise) from prototype to something people return to, with outcome evidence.
 
-**Build:** a CPG operator agent. An MCP server exposes Amazon SP-API and Shopify data as tools; an agent answers operator questions ("which SKUs are at stockout risk in 30 days, and why?") and drafts actions for human approval.
+- **Week 9, does it work:** an outcome eval, not only an output eval. Do learners retain what Ada says they mastered? Measure review success at day 7 against a static-lesson baseline; get a second person to label a sample of the grading cases and report agreement; publish the write-up
+- **Week 10, do people come back:** 25 people outside his companies; report the funnel from first visit to second session using the queries in Ada's `docs/METRICS.md`; one change shipped from the data. (Holiday week: plan for 8 hours.)
+- **Week 11, tell it to researchers:** a 20-minute readout to two people who work in AI research or AI product, recorded in `evals/signals.md`; essay 4; mock interviews
 
-- **Week 5, agents:** "Building effective agents"; workflows versus agents; hand-written tool loop, then Claude Agent SDK; human approval on anything that writes
-- **Week 6, MCP:** read the spec; build the server applying "Writing effective tools for agents"; test from Claude Code and the Claude app; installable in under 15 minutes
-- **Week 7, context engineering:** read the context engineering post; memory, summarization, subagents; package one workflow as a skill; essay on the context-layer thesis
-- **Week 8, evals:** 50–100 cases, code-graded where possible, model-graded where not; hand error analysis of 50 failures; compare two model tiers on quality versus cost; publish the write-up
-- **Across weeks 5–8, agent orchestration:** run 2–3 agents in parallel on separate parts of the flagship, each in its own git worktree; write standing instructions and skills so agents stall less; log agent hours versus your hours weekly and publish the trend in the week 8 write-up; review agent output on a schedule rather than watching it work
-- **Across weeks 5–8, red-team the agent:** it reads product listings, customer reviews and supplier emails, all text an attacker could control. Write a threat model; build 30+ prompt-injection and misuse attacks hidden in realistic data; add defenses (narrow tool permissions, human approval on writes, isolation of untrusted input, output checks); publish an injection-resistance eval with attack success and task success before and after, and what still gets through
-
-**Gate:** a stranger installs it in under 15 minutes, three or more operators have used it, eval results are public, including injection resistance.
+**Gate (week 11):** 25 outside users, day-7 return rate and review success reported with counts, eval suite public with second-labeller agreement, readout done.
 
 **Tutor checks**
-- Without code, draw the agent loop including exactly where a human approves.
-- For three founder use cases the tutor provides, argue workflow or agent.
-- Rewrite a bad MCP tool description; measure tool-selection accuracy before and after.
-- At step 20 of a long task, what stays in context and what gets summarized or dropped?
-- Measure a model grader's agreement with his own labels on 20 cases.
-- Which agent stalled waiting on him most this week, and what standing instruction or skill would have prevented it?
-- One defense cuts attack success by 80% but also cuts legitimate task success by 30%. Ship it? Defend the numbers.
+- Ada says a learner has "mastered" a concept. What evidence would convince a sceptical researcher, and do you have it?
+- Your day-7 number is from 25 people. What can you claim, and what can you not?
+- At step 20 of a long tutoring session, what stays in context and what gets summarised or dropped?
+- A change raises completion but lowers review success. Ship it? Defend the numbers.
+- Measure a model grader's agreement with your own labels on 20 cases, then with a second person's.
 
 ---
 
-## Weeks 9–12: Capstone
+## Week 12: Capstone
 
-**Goal:** do a small, real version of the Safeguards PM job, in public, and report on it as a member of that team would.
+**Goal:** do a small, real version of the Research PM, Labs job in public.
 
-**Track A (main), a safeguards product spec:**
-- Week 9: pick one real Anthropic surface and one risk (for example prompt injection against agents that use connectors, or sellers using Claude to generate illegal health claims at scale); write the threat model
-- Week 10: design detections and interventions, using the week 2–8 builds as prototypes; define success metrics, blind-spot metrics, and the cost of each kind of error
-- Week 11: write the eval plan and run a small version; review the spec with two people who have worked in trust and safety or fraud
-- Week 12: publish a 3–5 page spec: problem, threat model, options with tradeoffs, MVP to ideal state, metrics, risks, what to test first
-
-**Track B (light), a founder workshop:**
-- One workshop for 6–10 founders on building with Claude safely: guardrails, evals, prompt injection
-- A short field report on what founders get wrong about safety
+**A Labs product memo, 4 to 6 pages:** pick one capability from recent Anthropic research that is not yet a product. Problem and user, why now, what the weeks 6 to 11 evidence says, the cheapest test, MVP to ideal state, risks and benefits (who could be hurt, how you would know), and what you would cut to ship in six weeks. Plus a one-page retrospective on the 12 weeks.
 
 **Tutor checks**
-- Spec review: Claude plays a Safeguards engineering lead and asks what to cut to ship an MVP in six weeks.
-- Policy review: Claude plays a policy lead and challenges the harm definitions and edge cases.
-- Metrics review: how would he know the safeguard is failing silently?
-- Workshop dry run: Claude plays a non-technical founder, a skeptical senior engineer, and an AI-native founder in a hurry.
+- Product review: Claude plays a Labs lead and asks what to cut to ship in six weeks.
+- Research review: Claude plays a researcher and challenges every claim about what the capability can do.
+- User review: Claude plays a sceptical user who has tried three AI products this year and kept none.
+- Risk review: how would you know the product is hurting the people it is for?
 
 ---
 
-## Parallel track: research and safety literacy (about 4 hours a week)
+## Parallel track: research and product literacy (about 2 hours a week)
 
-Each week: read, run `/explain-back` on the core claim, then publish a 500–800 word essay that survives a skeptical-researcher review.
+Each week: read, run `/explain-back` on the core claim. Essays are every second week, 500 to 800 words, and must survive a sceptical-researcher review.
 
-| Week | Reading | Essay prompt |
+| Week | Reading | Writing |
 | --- | --- | --- |
-| 1 | Building safeguards for Claude; Anthropic's Usage Policy; How employment is changing at Anthropic | How a policy becomes detection: lessons from FTC claims rules and payment fraud |
-| 2 | Responsible Scaling Policy; ASL-3 deployment safeguards report | What ASL-3 safeguards ask of a deployed product |
-| 3 | Claude's constitution | Where model character ends and product safeguards begin |
-| 4 | 3Blue1Brown neural network and transformer series | Explain a transformer to a CPG founder |
-| 5 | Karpathy, Zero to Hero, through "Let's build GPT" (budget 8 hours) | What building a tiny model taught you about the big ones |
-| 6 | Constitutional Classifiers, and the next-generation version | The real cost of a false positive: classifiers versus helpfulness |
-| 7 | Anthropic threat intelligence reports, including the AI-orchestrated espionage case | What attackers actually do with AI, and what caught them |
-| 8 | Agentic misalignment; prompt injection research | Guardrails for agents that act on untrusted data |
-| 9 | Anthropic Economic Index; reread How employment is changing at Anthropic | Where AI use is growing, and where misuse risk concentrates |
-| 10 | Current frontier model system card, safeguards sections | What a system card tells a builder, and what it doesn't |
-| 11 | Introducing the Safeguards Research Team; US CAISI and UK AISI collaboration | How a lab works with outside red-teamers and governments |
-| 12 | Recent Anthropic safeguards posts | Three emerging misuse risks, and the safeguard you would build for each |
+| 4 | The Research PM, Labs posting; "Building effective agents"; Ada's own eval report, read as a reviewer would | Friction log (start) |
+| 5 | Anthropic Education Report on how students use Claude; the learning mode announcement | **Essay 1:** What learning inside a chat app is missing, from running a course both ways |
+| 6 | Model Context Protocol introduction; "Writing effective tools for agents" | Bet memo 1 |
+| 7 | Project Vend, both phases | **Essay 2:** What an agent running a shop gets wrong, from someone who ran one. Bet memo 2 |
+| 8 | "Effective context engineering for AI agents"; How employment is changing at Anthropic | Bet memo 3 |
+| 9 | "Tracing the thoughts of a large language model" | **Essay 3:** One research result I would turn into a product, and the cheapest test |
+| 10 | Claude's constitution; Responsible Scaling Policy | Outcome-eval write-up |
+| 11 | Anthropic Economic Index, latest report | **Essay 4:** Where usage is growing and which product is missing |
+| 12 | Current frontier model system card; how Claude Code and MCP started | Labs product memo; retrospective |
 
 ---
 
@@ -132,9 +129,9 @@ Each week: read, run `/explain-back` on the core claim, then publish a 500–800
 
 | Week | Post |
 | --- | --- |
-| 1 | What I'm building over the next 12 weeks, and for whom |
-| 4 | Launch: the claims safeguard, with precision and recall by category; plus a write-up of the AI tutor system as meta-work |
-| 6 | Launch: the CPG operator MCP server |
-| 8 | What evals caught that I would have missed |
-| 10 | Red-teaming my own agent: what got through, and what stopped it |
-| 12 | The safeguards spec, plus a retrospective |
+| 4 | Ada case study: the bet, both model baselines, what three first-time users did |
+| 5 | Essay 1, and the application |
+| 8 | Three bets in three weeks: what I killed and why |
+| 9 | Does adaptive beat static? An outcome eval for an AI tutor |
+| 11 | What 25 learners did in their first week |
+| 12 | The Labs product memo, plus a retrospective |

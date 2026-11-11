@@ -1,42 +1,41 @@
-# Week 4: Build a safeguard (rigor and metrics, phase gate)
+# Week 4: Ship what exists (Ada evidence)
 
-**Dates:** Mon 9 Nov to Fri 13 Nov 2026 · about 20 hours
+**Dates:** Wed 11 Nov to Sun 15 Nov 2026 · about 10 hours · rewritten Tue 10 Nov after the retarget to Research PM, Labs (see `CURRICULUM.md`)
 
-**Deliverable (ships Friday):** `claims-guard` in `builds/claims-guard/`, public: your `POLICY.md` (3 categories), `claims.csv` with 30 hand-labeled real claims (10 per category, 2 borderline in each), a CLI that returns one validated allow/warn/block finding per claim, and a README case study with precision and recall by category (counts shown), the threshold you chose and why, cost per 1,000 reviews, and at least one outside operator's run.
+**Deliverable (ships Friday):** Ada as public evidence. Three things: the Claude eval baseline committed beside the OpenAI one in the Ada repo; three people outside your companies through a first lesson on the live site, logged in `evals/signals.md`; and `builds/ada/README.md` in this repo, a case study a reviewer can read in two minutes.
 
-**Gate (phase gate, from the curriculum, then apply):** repo public, two or more operators outside his companies have run it, README reports precision and recall by category and explains the threshold chosen. **Apply only on a passed gate.** If Friday's check is "partly", the application moves to a week 5 re-check; it does not go out on a missed gate.
+**Gate (from the curriculum):** a stranger finishes lesson one on the live site with no account and no help; the OpenAI and Claude eval baselines are both public; three outside sessions are logged in `evals/signals.md`.
 
-**Carry-over (third week running):** no week 3 review was committed, and `git log` shows no commits in week 3 after Monday's plan: `builds/`, `essays/`, `evals/results/`, `evals/signals.md` and `LEARNING_LOG.md` are unchanged since week 0. The week 2 review's fixes all still stand:
-1. **Ship `claims-guard` v0 by Tuesday night.** `POLICY.md` first, written by you, committed Monday. Push rough.
-2. **Commit every working day** and `/log` with hours, agent hours and a tutor rating. A fourth silent week is the single worst signal the repo can send.
-3. **Operator messages are Monday's first task**, two this time (the gate needs two), each logged in `evals/signals.md` as "asked".
-4. Take the first closed-book quiz Friday and push `evals/results/`.
-
-**Cut because you're behind (no extra hours):** 30 labels, not 50+. Prompt caching layouts, batch, and retrieval versus long context are dropped from this phase (cost per 1,000 reviews stays: one number from the usage fields). Retries shrink to one test: a claim that errors is reported as `error`, never `allow`. Held-out claim type, the tutor-system write-up and the grader audit move to week 5. No essay; the README is this week's writing, and the launch post is the README link plus three lines.
+**What was dropped:** `claims-guard`, `listing-audit` and every Safeguards carry-over. They are not coming back. The one carry-over that survives is the habit: **commit and `/log` every working day.** This repo has had no commits from you in four weeks, while Ada got built in one. The plan now points at the work you are doing, so the log should be easy to keep.
 
 ## Daily plan
 
 | Day | Hours | Work |
 | --- | --- | --- |
-| Mon | 4 | **First 30 min:** message two supplement or food operators outside your companies; book Thursday; log both as "asked". Write `POLICY.md` yourself (definition, why it's risky, 2 examples each side, severity, intervention per category). **Commit tonight.** `/log`. Set up the Wednesday `/checkin` two reviews have suggested. |
-| Tue | 4 | Label 30 real claims. v0 CLI end to end: Pydantic-validated findings, failure counts, the error-is-never-allow test. **Push tonight.** Two agents in parallel: one gathers candidate claims while you label, one scaffolds models and tests. |
-| Wed | 4 | Run all 30. Precision and recall per category with the confusion counts. Sort every miss into a failure type *before* changing the prompt; one prompt revision, re-run, report both. **Scope check by noon:** if v0 isn't pushed, cut to 15 claims and say so in the log. |
-| Thu | 4 | Operator session(s); log what they did and said. Cost per 1,000 reviews from measured tokens. Dollar cost of a false positive and a miss for one real brand, then the threshold. README case study. |
-| Fri | 4 | Closed-book quiz, `/eval`, push `evals/results/`. Final README pass. `/log` agent hours vs your hours. Self-check the gate in one line. |
+| Wed | 3 | **First 20 min:** message three people outside your companies to try Ada on Thursday; log each in `evals/signals.md` as "asked". Then run Ada's `Model evaluation` workflow for Claude and commit the baseline. Run `npm run smoke:model` against production. Open the live site in a private window and time yourself from landing to first answer. `/log`. |
+| Thu | 3 | Before the sessions, write down the three places you expect people to stumble and the one observation that would change the product. Watch three people use Ada. Don't help. Log what they did and said. Run the funnel query in Ada's `docs/METRICS.md`. Start `essays/friction-log.md`: 30 minutes learning one topic in the Claude app's learning mode, 30 in Ada, every break written down. `/log`. |
+| Fri | 3 | Write `builds/ada/README.md`: the bet, the kill criteria (written now, and labelled as written after the build), both baselines side by side, the funnel counts, what failed, what's next. Fix the one thing that stopped the most people. Closed-book quiz, `/eval 4`, push `evals/results/`. `/log` with agent hours and your hours. |
+| Weekend | 1 | Bring the site's Ada description in line with the repo. Accept or reject the open suggestions on the resume. |
+
+**Scope check, Thursday noon:** if the Claude baseline isn't committed, drop the friction log to week 5 and say so in the log.
 
 ## Tutor checks
 
-- Sort 10 eval failures into categories before changing any prompt. Which category would a prompt change not fix?
-- A false positive costs a brand legitimate sales; a miss risks an FTC warning letter. Put a dollar figure on each for one real brand (Jade Leaf is fine). Where does the threshold go? Explain it to a policy lead in two sentences. Carried from week 2.
-- With 10 claims per category, what is one miss worth in recall? What would you say in the README so a reader doesn't over-trust the numbers?
-- Write 5 adversarial claims a seller would use to slip past your policy. How many get through? Fix one, and note the rest as known gaps.
-- **Communication (all five dimensions tied at 1; judgment and founder empathy had the last two checks):** give the README's first paragraph to someone outside. Ask them to say back what the tool does and how often it catches disease claims. If they can't, rewrite it before Friday.
+- In Ada's eval report, which single number matters most for a learning product, and why? What does its confidence interval tell a reader with this many cases?
+- The judge model also writes Ada's course plans by default. What does that do to trust in the plan scores, and what is the cheapest fix?
+- Predict which provider does better on recognising partial answers. Write the prediction in the log before the Claude run finishes. Then explain the gap.
+- Who is Ada not for? One sentence, and what you would tell that person to use instead.
+- **User evidence (the weakest dimension: no outside signal in four weeks):** after Thursday, name the one thing a user did that you did not predict. If there isn't one, you helped too much or picked people too like yourself; say which.
 - No quiz review question this week: `evals/results/learner.csv` doesn't exist yet.
 
 ## Reading
 
-Optional, only after Thursday's README is pushed: the first two 3Blue1Brown neural network videos. The week 4 essay (explain a transformer to a CPG founder) is cut.
+The Research PM, Labs posting, line by line: for each responsibility, name the artifact you have that proves it, or write "none yet". Then "Building effective agents". No essay this week; essay 1 is due in week 5 and comes out of the friction log.
 
-## Founder touchpoint
+## User touchpoint
 
-Nobody lined up for three weeks; `evals/signals.md` is still empty. Monday's first task: two operators outside your companies, asked by message, booked for Thursday. A Jade Leaf alum and one portfolio founder are the fastest yeses. If only one runs it, the gate is "partly" and the second becomes week 5's first task.
+Three people outside your companies, asked Wednesday morning, sessions Thursday. Pick at least one who is not technical and one you have never explained Ada to. If only two show, the gate is "partly" and the third is Monday's first task.
+
+## Next week
+
+Week 5: essay 1, resume and site in line with Ada, and **the application submitted by Fri 20 Nov**, whatever this week's gate result.
