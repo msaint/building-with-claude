@@ -9,3 +9,12 @@ Newest entries at the bottom. Each entry: what shipped, one concept learned in m
 - **Numbers:** none yet
 - **Stuck on:** nothing
 - **Next:** run `/plan-week` to start week 1
+
+## 2026-11-12 · Week 4
+
+- **Prediction (written while the Claude eval was running, before results):** Claude will be better than OpenAI at recognising partial answers, because Claude is the model that currently writes the questions. Size of the gap: not given yet.
+- **Did:** asked Evan, Luke and Will on 11 Nov (logged in `evals/signals.md`); wrote the session predictions before any session; Claude eval run started
+- **Learned:** _to fill in at end of day_
+- **Numbers:** _to fill in once the eval finishes_
+- **Stuck on:** _to fill in_
+- **Next:** _to fill in_
