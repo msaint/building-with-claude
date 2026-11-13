@@ -19,3 +19,4 @@ The anchors above were rewritten for the Research PM, Labs target on 10 Nov 2026
 | 1 | 1 | 1 | 1 | 1 | 1 | Missed | Scheduled Friday review |
 | 2 | 1 | 1 | 1 | 1 | 1 | Missed | Scheduled Friday review |
 | 3 | – | – | – | – | – | Missed | No review written (the scheduled run did not finish); nothing was pushed |
+| 4 | 2 (provisional; Ada repo not reviewed) | 1 | 1 | 1 | 1 | Missed | Scheduled Friday review |
