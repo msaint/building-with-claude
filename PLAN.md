@@ -1,42 +1,49 @@
-# Week 4: Ship what exists (Ada evidence)
+# Week 5: Ship what exists (apply)
 
-**Dates:** Wed 11 Nov to Sun 15 Nov 2026 · about 10 hours · rewritten Tue 10 Nov after the retarget to Research PM, Labs (see `CURRICULUM.md`)
+**Dates:** Mon 16 Nov to Sun 22 Nov 2026 · about 12 hours · written Mon 16 Nov by the Monday coach
 
-**Deliverable (ships Friday):** Ada as public evidence. Three things: the Claude eval baseline committed beside the OpenAI one in the Ada repo; three people outside your companies through a first lesson on the live site, logged in `evals/signals.md`; and `builds/ada/README.md` in this repo, a case study a reviewer can read in two minutes.
+**Deliverable (ships Friday):** the application to Research PM, Labs, submitted by **Fri 20 Nov**, linking to a public Ada case study (`builds/ada/README.md`) and essay 1.
 
-**Gate (from the curriculum):** a stranger finishes lesson one on the live site with no account and no help; the OpenAI and Claude eval baselines are both public; three outside sessions are logged in `evals/signals.md`.
+**Gate (milestone, from the curriculum):** application submitted to Research PM, Labs by Fri 20 Nov, whatever the week 4 gate result. A missed week 4 gate is reported in the review; it does not hold the application.
 
-**What was dropped:** `claims-guard`, `listing-audit` and every Safeguards carry-over. They are not coming back. The one carry-over that survives is the habit: **commit and `/log` every working day.** This repo has had no commits from you in four weeks, while Ada got built in one. The plan now points at the work you are doing, so the log should be easy to keep.
+## Carry-over from the week 4 review (gate missed, fourth week running)
+
+State of play on Monday morning: the session work from 12 Nov is still on `claude/optimistic-bohr-gso5r4`, not `main`; `builds/` is empty; `evals/signals.md` has no rows on `main`; Ada's `evals/baselines/` holds only `openai-2026-11-10` (no Claude baseline), and Ada has had no commits since 10 Nov.
+
+1. **Merge the branch first.** `git checkout main && git pull && git merge origin/claude/optimistic-bohr-gso5r4 && git push`. Then replace the `_to fill in_` placeholders in the 12 Nov entry with facts, or delete them.
+2. **Case study by Tuesday night.** It is the application's main exhibit. Contents as the review listed: the bet; kill criteria labelled "written after the build"; both baselines side by side with counts and intervals; your +10 partial-answer prediction next to the result; the false-mastery risk and which eval number measures it; "Three labs, one product" with one decision you changed; what failed; what's next; link to Ada.
+3. **Sessions, with a closed prediction.** Before the first one, set the threshold (for example "2 of 3 skim before 10 minutes") and name three stumbling points.
+
+**Cut, to fit 12 hours:** the Gemini baseline; "fix the top two problems from the week 4 sessions" (there were none) becomes "fix one only if a session shows a blocker before Thursday"; the week 4 examiner pass moves to week 8. Essay 1 does not hold the application.
 
 ## Daily plan
 
 | Day | Hours | Work |
 | --- | --- | --- |
-| Wed | 3 | **First 20 min:** message three people outside your companies to try Ada on Thursday; log each in `evals/signals.md` as "asked". Then run Ada's `Model evaluation` workflow for Claude and commit the baseline. Stretch, not part of the gate: a Gemini baseline too, if its runtime transport is merged to Ada's main; otherwise it moves to week 5. Run `npm run smoke:model` against production. Open the live site in a private window and time yourself from landing to first answer. `/log`. |
-| Thu | 3 | Before the sessions, write down the three places you expect people to stumble and the one observation that would change the product. Watch three people use Ada. Don't help. Log what they did and said. Run the funnel query in Ada's `docs/METRICS.md`. Start `essays/friction-log.md`: 30 minutes learning one topic in the Claude app's learning mode, 30 in Ada, every break written down. `/log`. |
-| Fri | 3 | Write `builds/ada/README.md`: the bet, the kill criteria (written now, and labelled as written after the build), both baselines side by side, the funnel counts, what failed, what's next. Include **"Three labs, one product"**: which of the OpenAI, Anthropic and Google models built what and which serves what at runtime, where each was better or worse, and one decision you changed because of it. Fix the one thing that stopped the most people. Closed-book quiz, `/eval 4`, push `evals/results/`. `/log` with agent hours and your hours. |
-| Weekend | 1 | Bring the site's Ada description in line with the repo. Accept or reject the open suggestions on the resume. |
-
-**Scope check, Thursday noon:** if the Claude baseline isn't committed, drop the friction log to week 5 and say so in the log.
+| Mon | 2.5 | **First 15 min:** merge the branch; message Evan, Luke and Will to book Tue or Wed. Close the session prediction (threshold plus three stumbling points) and commit it. Finish the Claude eval run, commit the baseline beside the OpenAI one in Ada, and log the partial-answer result against your +10 prediction. `/log`. |
+| Tue | 2.5 | Write `builds/ada/README.md` v1 and push it tonight, rough beats private. Session 1 if booked: watch, don't help, log it in `evals/signals.md`. `/log`. |
+| Wed | 2.5 | Sessions 2 and 3; add what they did to the case study. 30 min in the Claude app's learning mode and 30 in Ada on one topic; start `essays/friction-log.md` with every break. **Scope check, Wed noon:** if fewer than 2 sessions are booked, the application goes out with the case study and the asks only, and you say so in the log. `/log`. |
+| Thu | 2.5 | Resume and site match the case study (Ada as it is, with numbers). Draft the application. Draft essay 1, 500 to 800 words, from the friction log. `/log`. |
+| Fri | 2 | **Submit the application by noon.** Publish essay 1, or log that it slipped to the weekend. Closed-book quiz, `/eval 5`, push `evals/results/`. `/log` with agent hours, your hours and a tutor rating. |
 
 ## Tutor checks
 
-- In Ada's eval report, which single number matters most for a learning product, and why? What does its confidence interval tell a reader with this many cases?
+- In Ada's eval report, which single number matters most for a learning product, and why? What does its interval tell a reader with this many cases?
+- Your partial-answer prediction was Claude +10. What was the result, and does the gap support your mechanism or something else?
 - The judge model also writes Ada's course plans by default. What does that do to trust in the plan scores, and what is the cheapest fix?
-- Predict which provider does better on recognising partial answers. Write the prediction in the log before the Claude run finishes. Then explain the gap.
-- You run three labs' models on Ada, as builders and at runtime. Name one job where you would not swap the model you use today, and the evidence. If the evidence is a feeling, what is the cheapest measurement?
+- Before the sessions: three stumbling points and the one observation that would change the product. Afterwards: did it?
 - Who is Ada not for? One sentence, and what you would tell that person to use instead.
-- **User evidence (the weakest dimension: no outside signal in four weeks):** after Thursday, name the one thing a user did that you did not predict. If there isn't one, you helped too much or picked people too like yourself; say which.
-- No quiz review question this week: `evals/results/learner.csv` doesn't exist yet.
+- **Judgment (weakest with user evidence; no kill criteria exist for Ada):** write Ada's kill criteria now, labelled post-hoc. Each must be a number or an observable behaviour. Which one would Ada fail today?
+- No quiz review question: `evals/results/learner.csv` doesn't exist yet. Friday's quiz creates it.
 
-## Reading
+## Reading and writing
 
-The Research PM, Labs posting, line by line: for each responsibility, name the artifact you have that proves it, or write "none yet". Then "Building effective agents". No essay this week; essay 1 is due in week 5 and comes out of the friction log.
+Anthropic's Education Report on how university students use Claude, and the learning mode announcement. Run `/explain-back` on one claim from each. **Essay 1:** what learning inside a chat app is missing, from running a course both ways. It must survive a sceptical-researcher read: every claim backed by the friction log or a session.
 
 ## User touchpoint
 
-Three people outside your companies, asked Wednesday morning, sessions Thursday. Pick at least one who is not technical and one you have never explained Ada to. If only two show, the gate is "partly" and the third is Monday's first task.
+Evan, Luke and Will, asked 11 Nov. Book them Monday for Tue or Wed. At least one is not technical and one has never had Ada explained. One stranger finishing lesson one with no account and no help is still the week 4 gate.
 
 ## Next week
 
-Week 5: essay 1, resume and site in line with Ada, and **the application submitted by Fri 20 Nov**, whatever this week's gate result.
+Week 6, bet 1: Ada inside Claude as a skill plus an MCP server. Thanksgiving week, 8 hours. Kill criteria come before the code.
